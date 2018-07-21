@@ -1,0 +1,18 @@
+﻿@using ASP_MVC_dz5.Models
+@using ASP_MVC_dz5.App_Code;
+@{
+    //Layout = null;
+}
+
+<h2>Publisher</h2>
+@if (PublisherRepository.Instanse._publishers.Count > 0)
+{
+    @Html.GenerateCustomTable(PublisherRepository.Instanse._publishers, publishers => { return $"{Html.ActionLink("Edit", "Edit", new { id = publishers.Id }, new { @class = "btn btn-success" })}{Html.ActionLink("Delete", "Delete", new { id = publishers.Id }, new { @class = "btn btn-danger" })}"; })
+    <div class="footer-table">
+        @Html.ActionLink("Add", "Create", new { }, new { @class = "btn btn-success" })
+    </div>
+}
+else
+{
+    <h3 class="empty-table">No records. <a href="/Publisher/Create" class="first-records">Add First Publisher</a></h3>
+}

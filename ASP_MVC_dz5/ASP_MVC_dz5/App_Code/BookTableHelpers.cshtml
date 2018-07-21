@@ -1,0 +1,41 @@
+﻿@using ASP_MVC_dz5.Models;
+@using System.Web.Mvc.Html;
+
+@helper TableIndex(System.Web.Mvc.HtmlHelper h)
+{
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Page</th>
+                <th>Publish Date</th>
+                <th>ISBN</th>
+                <th>Publisher</th>
+                <th>Authors</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            @foreach (var item in BookRepository.Instanse._books)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.PageCount</td>
+                    <td>@item.PublishDate.ToString("d")</td>
+                    <td>@item.ISBN</td>
+                    <td>@item.Publisher.Name</td>
+                    <td>
+                        @if (item.Authors != null)
+                        {
+                            foreach (var it in item.Authors)
+                            {
+                                @it.Name; <span> </span>
+                            }
+                        }
+                    </td>
+                    <td>@h.ActionLink("Edit", "Edit", new { item.Id }, new { @class = "btn btn-secondary" })</td>
+                    <td>@h.ActionLink("Delete", "Delete", new { item.Id }, new { @class = "btn btn-danger" })</td>
+                </tr>
+            }
+        </table>
+}

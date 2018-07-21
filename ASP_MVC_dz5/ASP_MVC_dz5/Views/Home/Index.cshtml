@@ -1,0 +1,68 @@
+﻿@using ASP_MVC_dz5.Models;
+@{
+    //Layout = null;
+}
+<div>
+    <div class="my-container">
+        <div class="item">
+            <h3>Role</h3>
+            <div>Amount of elements @RoleRepository.Instanse._role.Count</div>
+            @if (RoleRepository.Instanse._role.Count > 0)
+            {
+                <a href="/Role/Create" class="btn btn-primary">Add New Role</a>
+            }
+            else
+            {
+                <a href="/Role/Create" class="btn btn-primary">Add First Role</a>
+            }
+        </div>
+        <div class="item">
+            <h3>User</h3>
+            <div>Amount of elements @UserRepository.Instanse._user.Count</div>
+            @if (UserRepository.Instanse._user.Count > 0)
+            {
+                <a href="/User/Create" class="btn btn-primary">Add New User</a>
+            }
+            else
+            {
+                <a href="/User/Create" class="btn btn-primary">Add First User</a>
+            }
+        </div>
+        <div class="item">
+            <h3>Author</h3>
+            <div>Amount of elements @AuthorRepository.Instanse._authors.Count</div>
+            @if (AuthorRepository.Instanse._authors.Count > 0)
+            {
+                <a href="/Author/Create" class="btn btn-primary">Add New Author</a>
+            }
+            else
+            {
+                <a href="/Author/Create" class="btn btn-primary">Add First Author</a>
+            }
+        </div>
+        <div class="item">
+            <h3>Publisher</h3>
+            <div>Amount of elements @PublisherRepository.Instanse._publishers.Count</div>
+            @if (PublisherRepository.Instanse._publishers.Count > 0)
+            {
+                <a href="/Publisher/Create" class="btn btn-primary">Add New Publisher</a>
+            }
+            else
+            {
+                <a href="/Publisher/Create" class="btn btn-primary">Add First Publisher</a>
+            }
+        </div>
+        <div class="item">
+            <h3>Book</h3>
+            <div>Amount of elements @BookRepository.Instanse._books.Count</div>
+            @if (BookRepository.Instanse._books.Count > 0)
+            {
+                <a href="/Book/Create" class="btn btn-primary">Add New Book</a>
+            }
+            else
+            {
+                <a href="/Book/Create" class="btn btn-primary">Add First Book</a>
+            }
+        </div>
+    </div>
+</div>

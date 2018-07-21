@@ -1,0 +1,23 @@
+﻿@using ASP_MVC_dz5.Models;
+@using System.Web.Mvc.Html;
+
+@helper TableIndex(System.Web.Mvc.HtmlHelper h) 
+{
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                @foreach (var item in PublisherRepository.Instanse._publishers)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@h.ActionLink("Edit", "Edit", new { item.Id }, new { @class = "btn btn-secondary" })</td>
+                        <td>@h.ActionLink("Delete", "Delete", new { item.Id }, new { @class = "btn btn-danger" })</td>
+                    </tr>
+                }
+            </table>
+}

@@ -1,0 +1,32 @@
+﻿@using ASP_MVC_dz5.Models;
+@using System.Web.Mvc.Html;
+
+@helper TableIndex(System.Web.Mvc.HtmlHelper h)
+{
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Date Of Birth</th>
+                <th>Date Of Death</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            @foreach (var item in AuthorRepository.Instanse._authors)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.DateOfBirth.ToString("d")</td>
+                    <td>
+                        @if (@item.DateOfDeath.ToString("d") == "01.01.0001")
+                        {<span> __ __ ____ </span>}
+                        else
+                        {@item.DateOfDeath.ToString("d")}
+                    </td>
+                    <td>@h.ActionLink("Edit", "Edit", new { item.Id }, new { @class = "btn btn-secondary" })</td>
+                    <td>@h.ActionLink("Delete", "Delete", new { item.Id }, new { @class = "btn btn-danger" })</td>
+                </tr>
+            }
+        </table>
+}

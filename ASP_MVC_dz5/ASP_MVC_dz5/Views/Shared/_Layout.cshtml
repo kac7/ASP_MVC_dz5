@@ -1,0 +1,71 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Style/bootstrap.css" rel="stylesheet" />
+    <link href="~/Style/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="/">
+                    ASP MVC Library
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0 header_nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Book/Index">Book</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Author/Index">Author</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Publisher/Index">Publisher</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/User/Index">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="padding-right: 0;" href="/Role/Index">Role</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="main container">
+        @RenderBody()
+    </div>
+    @if (IsSectionDefined("footer"))
+    {
+        <div class="footer container-fluid">
+            @RenderSection("footer", false)
+        </div>
+    }
+    else
+    {
+        <div class="footer container-fluid">
+            © 2018 Akulov Themes
+        </div>
+    }
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+</body>
+</html>

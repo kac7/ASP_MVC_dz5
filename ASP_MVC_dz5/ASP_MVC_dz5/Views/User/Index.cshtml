@@ -1,0 +1,17 @@
+﻿@using ASP_MVC_dz5.Models
+@using ASP_MVC_dz5.App_Code;
+@{
+    //Layout = null;
+}
+<h2>Users</h2>
+@if (UserRepository.Instanse._user.Count > 0)
+{
+        @Html.GenerateCustomTable(UserRepository.Instanse._user, User => { return $"{Html.ActionLink("Edit", "Edit", new { id = User.Id }, new { @class = "btn btn-success" })}{Html.ActionLink("Delete", "Delete", new { id = User.Id }, new { @class = "btn btn-danger" })}"; })
+        <div class="footer-table">
+            @Html.ActionLink("Add", "Create", new { }, new { @class = "btn btn-success" })
+        </div>
+}
+else
+{
+    <h3 class="empty-table">No records. <a href="/User/Create" class="first-records">Add First User</a></h3>
+}

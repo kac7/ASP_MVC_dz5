@@ -1,0 +1,93 @@
+﻿@using ASP_MVC_dz5.Models
+@model Book
+@{
+    //Layout = null;
+}
+<div class="main-form">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Book</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-form-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.PageCount, htmlAttributes: new { @class = "col-form-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.PageCount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PageCount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.ISBN, htmlAttributes: new { @class = "col-form-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.ISBN, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ISBN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.PublishDate, htmlAttributes: new { @class = "col-form-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.PublishDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PublishDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Publisher, htmlAttributes: new { @class = "col-form-label col-md-3" })
+            <div class="col-md-9">
+                @if (PublisherRepository.Instanse._publishers.Count > 0)
+                {
+                    @Html.DropDownListFor(model => model.Publisher.Name, new SelectList(PublisherRepository.Instanse._publishers.Select(p => p.Name)), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Publisher, "", new { @class = "text-danger" })
+                }
+                else
+                {
+                    <div class="empty-notice">You do not have any publishers! <a href="/Publisher/Create">Create Publisher</a></div>
+                }
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Authors, htmlAttributes: new { @class = "col-form-label col-md-3" })
+            <div class="col-md-9">
+                @if (AuthorRepository.Instanse._authors.Count > 0)
+                {
+                    //Так и не разобрался как ListBoxFor работает(((((((((((((
+                    @*@Html.ListBoxFor(model => model.Authors, new MultiSelectList(AuthorRepository.Instanse._authors, "Id", "Name"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Authors, "", new { @class = "text-danger" })*@
+
+                    <select name="Authors[]" id="Authors" required size="3" multiple class="form-control">
+                        @foreach (var item in AuthorRepository.Instanse._authors)
+                        {
+                            <option>@item.Name</option>
+                        }
+                    </select>
+                }
+                else
+                {
+                    <div class="empty-notice">You do not have any Authors! <a href="/Author/Create">Create Author</a></div>
+                }
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-12 footer-form">
+                <input type="submit" class="btn btn-success" value="Add" />
+                @Html.ActionLink("Cancel", "Index", new { }, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    </div>
+    }
+</div>
